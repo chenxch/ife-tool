@@ -1,14 +1,14 @@
 {
-  "name": "xc-ext",
-  "displayName": "xc-ext",
-  "description": "",
+  "name": "ife-tool",
+  "displayName": "ife tool",
+  "description": "前端vscode插件",
   "version": "0.0.1",
   "icon": "images/xc.png",
   "license": "MIT",
 	"publisher": "chenxch",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chenxch/xc-ext.git"
+    "url": "https://github.com/chenxch/ife-tool.git"
   },
   "engines": {
     "vscode": "^1.74.0"
@@ -17,32 +17,32 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:xc-ext.helloWorld"
+    "onCommand:ife-tool.helloWorld"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "xc-ext.helloWorld",
+        "command": "ife-tool.helloWorld",
         "title": "Hello World"
       },
       {
-        "command": "xc-ext.runModule",
+        "command": "ife-tool.runModule",
         "title": "Run Module"
       },
       {
-        "command": "xc-ext.buildModule",
+        "command": "ife-tool.buildModule",
         "title": "Build Module"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "xc-ext.runModule",
+          "command": "ife-tool.runModule",
           "group": "navigation@1"
         },
         {
-          "command": "xc-ext.buildModule",
+          "command": "ife-tool.buildModule",
           "group": "navigation@2"
         }
       ]

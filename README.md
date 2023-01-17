@@ -1,4 +1,4 @@
-# xc-ext README
+# ife-tool README
 
 添加右键菜单快速启动应用
 
