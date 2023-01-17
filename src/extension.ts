@@ -22,14 +22,14 @@ export function activate(context: vscode.ExtensionContext) {
   function getModuleInfo(path: string){
     const pathList = path.split('/');
     const idx = pathList.findIndex(o=>o==='modules');
-    const modulePath = pathList.slice(idx, idx+3).join('/');
+    const modulePath = pathList.slice(idx+1, idx+4).join('/');
     const shellPath = pathList.slice(0, idx).join('/');
     return { modulePath, shellPath }; 
   }
 
   let runModule = vscode.commands.registerCommand('ife-tool.runModule', (uri: vscode.Uri) => {
     const path = uri.path;
-    const moduleRe = /.*\/modules\/[a-zA-Z-]+\/[a-zA-Z-]+/;
+    const moduleRe = /.*\/modules\/[a-zA-Z-]+\/[a-zA-Z-]+\/[a-zA-Z-]+/;
     if(moduleRe.test(path)){
       const {modulePath} = getModuleInfo(path);
       const terminal = vscode.window.createTerminal('ife-tool');
