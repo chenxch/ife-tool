@@ -2,7 +2,7 @@
   "name": "ife-tool",
   "displayName": "ife tool",
   "description": "前端vscode插件",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "icon": "images/xc.png",
   "license": "MIT",
 	"publisher": "chenxch",

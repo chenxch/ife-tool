@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   function getModuleInfo(path: string){
     const pathList = path.split('/');
-    const idx = pathList.findIndex(o=>o==='modules');
+    const idx = pathList.findIndex(o=>o==='module');
     const modulePath = pathList.slice(idx+1, idx+4).join('/');
     const shellPath = pathList.slice(0, idx).join('/');
     return { modulePath, shellPath }; 
@@ -29,13 +29,17 @@ export function activate(context: vscode.ExtensionContext) {
 
   let runModule = vscode.commands.registerCommand('ife-tool.runModule', (uri: vscode.Uri) => {
     const path = uri.path;
-    const moduleRe = /.*\/modules\/[a-zA-Z-]+\/[a-zA-Z-]+\/[a-zA-Z-]+/;
+    const moduleRe = /.*\/module\/[a-zA-Z-]+\/[a-zA-Z-]+\/[a-zA-Z-]+/;
     if(moduleRe.test(path)){
       const {modulePath} = getModuleInfo(path);
       const terminal = vscode.window.createTerminal('ife-tool');
       terminal.show();
       // terminal.sendText(`cd ${shellPath}`);
-      terminal.sendText(`pnpm run dev -m=${modulePath}`);
+      if (process.platform === 'win32') {
+        terminal.sendText(`cross-env module=${modulePath} pnpm run dev`); 
+      } else {
+        terminal.sendText(`module=${modulePath} pnpm run dev`);
+      }
     }else {
       vscode.window.showErrorMessage('无效模块');
     }
@@ -43,13 +47,17 @@ export function activate(context: vscode.ExtensionContext) {
 
   let buildModule = vscode.commands.registerCommand('ife-tool.buildModule', (uri: vscode.Uri) => {
     const path = uri.path;
-    const moduleRe = /.*\/modules\/[a-zA-Z-]+\/[a-zA-Z-]+/;
+    const moduleRe = /.*\/module\/[a-zA-Z-]+\/[a-zA-Z-]+/;
     if(moduleRe.test(path)){
       const {modulePath} = getModuleInfo(path);
       const terminal = vscode.window.createTerminal('ife-tool');
       terminal.show();
       // terminal.sendText(`cd ${shellPath}`);
-      terminal.sendText(`pnpm run build -m=${modulePath}`);
+      if (process.platform === 'win32') {
+        terminal.sendText(`cross-env module=${modulePath} pnpm run dev`); 
+      } else {
+        terminal.sendText(`module=${modulePath} pnpm run dev`);
+      }
     }else {
       vscode.window.showErrorMessage('无效模块');
     }
